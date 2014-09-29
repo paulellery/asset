@@ -1,0 +1,131 @@
+<template name="define">
+	<h1>Define</h1>
+
+	<p>List the existing schemas</p>
+
+	<button id="add" class="btn btn-default">Add new Schema</button>
+
+	<ul>
+		{{#each schemas}}
+		<li id="{{_id}}">{{name}}</li>
+		{{/each}}
+	</ul>
+
+</template>
+
+
+
+
+<template name="createSchema">
+	
+	<h1>Create a schema</h1>
+
+	<div class="container">
+{{#autoForm schema=schemaSchema id="schemaForm" }}
+		<div class="row ">
+			<button type="button" class="btn btn-link pull-right">Cancel</button>
+			<button type="submit" class="btn btn-primary pull-right">Save</button>
+			
+		</div>
+
+		<div class="row">
+
+			
+	    		{{> afQuickField name='name'}}
+	    		<p>{{schemaFormError}}</p>
+		</div>
+
+
+			{{/autoForm}}
+
+		<div class="row">
+
+			<h4>Attributes</h4>
+			{{#autoForm schema=fieldsSchema id="contactForm" }}
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Label</th>
+							<th>Type</th>
+							<th>Optional?</th>
+						</tr>
+					</thead>
+					<tbody>
+						{{#each fields}}
+							{{> fieldRow}}
+						{{/each}}
+
+
+			<!-- 
+			Inline form commented when replaced by the autoform
+			<tr>
+				<td><input id="fName" class="form-control" type="text"></td>
+				<td><input id="fLabel" class="form-control" type="text"></td>
+				<td>
+					<select id="fType" class="form-control">
+						<option>String</option>
+						<option>Number</option>
+						<option>Date</option>
+					</select>
+				</td>			
+				<td><input id="fOptional" type="checkbox" ></td>
+
+				<td><button id="addField" class="btn btn-default">Add</button></td>
+			</tr>
+
+		-->
+		
+						<tr>
+						    <td>{{> afFieldInput name="name"}}
+						    {{#if afFieldIsInvalid 'name'}}
+      <span class="help-block">{{afFieldMessage 'name'}}x</span>
+      {{/if}}</td>
+						    <td>{{> afFieldInput name="label"}}</td>
+						    <td>{{> afFieldInput name="type" options=dataTypes}}</td>
+						  	<td>{{> afFieldInput name="optional"}}</td>
+						    <td>
+						      <button type="submit" class="btn btn-primary">Add</button>
+						      <button type="reset" class="btn btn-link">Cancel</button>
+						    </td>
+						</tr>
+					</tbody>
+
+				</table>
+			{{/autoForm}}
+
+		</div>
+	</div>
+
+</template>
+
+
+
+
+<template name="fieldRow">
+	<tr>
+		<td>{{name}}</td>
+		<td>{{label}}</td>
+		<td>{{type}}</td>
+		<td><input type="checkbox" readonly {{isChecked}} /></td>
+	</tr>
+</template>
+
+
+
+
+
+<template name="fieldForm">
+	  {{#autoForm schema=formSchema id="contactForm"}}
+  <fieldset>
+    <legend>Add a field</legend>
+    {{> afQuickField name="name"}}
+    {{> afQuickField name="label"}}
+    {{> afQuickField name="optional"}}
+    <div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="reset" class="btn btn-default">Reset</button>
+    </div>
+  </fieldset>
+  {{/autoForm}}
+</template>
