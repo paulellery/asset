@@ -5,4 +5,3 @@ Asset Manager is an application for managing inventories of assets.  Features (w
 * Asset definition
 * Issue tracking
 * Mobile support
-* 
