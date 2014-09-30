@@ -21,7 +21,7 @@ Template.schemaPicker.events({
           });
         }
         else{
-                Session.set("schema", x);
+                Session.set("schema", null);
               }
 
 
