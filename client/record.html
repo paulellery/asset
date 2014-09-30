@@ -11,13 +11,17 @@
 
 
 <template name="schemaPicker">
-	<select class="form-control" id="sPicker">
-		<option value=""></option>
-		{{#each schemas}}
-			<option>{{schemaName}}</option>
-		{{/each}}
+	<div class="form-group">
+    	<label for="sPicker">Type:</label>
+	
+		<select class="form-control" id="sPicker">
+			<option value=""></option>
+			{{#each schemas}}
+				<option>{{schemaName}}</option>
+			{{/each}}
 
-	</select>
+		</select>
+	</div>
 
 </template>
 
