@@ -8,4 +8,5 @@ iron:router
 pinglamb:bootstrap3
 insecure
 aldeed:autoform
+aldeed:collection2
 

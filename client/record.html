@@ -1,3 +1,26 @@
 <template name="record">
 	<h1>Record</h1>
+
+	 {{> schemaPicker}}
+
+
+	{{#if chosenSchema}}
+	   		{{> form}}
+	{{/if}}
+</template>
+
+
+<template name="schemaPicker">
+	<select class="form-control" id="sPicker">
+		<option value=""></option>
+		{{#each schemas}}
+			<option>{{schemaName}}</option>
+		{{/each}}
+
+	</select>
+
+</template>
+
+<template name="form">
+	{{> quickForm collection="AssetData" id="insertBookForm" type="insert" fields=formFields}}
 </template>

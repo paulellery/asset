@@ -1,6 +1,5 @@
 
 
-Schemas = new Mongo.Collection("schemas")
 
 // Schema - schema
 /*
@@ -25,32 +24,39 @@ Schemas = new Mongo.Collection("schemas")
 
 Schema = {}
 
-Schema.fields = new SimpleSchema({
-	name: {
+Schema.schema = new SimpleSchema({
+	schemaName: {
+		type: String,
+		label: "Name",
+		max: 50
+	},
+	fields: { 
+		type: [Object],
+		minCount: 1,
+		maxCount: 10
+	},
+	"fields.$.name": {
 		type: String,
 		label: "Name",
 		max:50
 	},
-	label: {
+	"fields.$.label": {
 		type: String,
 		label: "Label",
 		max:50
 	},
-	type: {
+	"fields.$.type": {
 		type: String,
 		label: "Type",
 	},
-	optional: {
+	"fields.$.optional": {
 		type: Boolean,
 		label: "Optional?"
-	},
-
-})
-
-Schema.schema = new SimpleSchema({
-	name: {
-		type: String,
-		label: "Name",
-		max: 50
 	}
 })
+
+Schemas = new Mongo.Collection("schemas")
+Schemas.attachSchema(Schema.schema);
+
+
+AssetData = new Mongo.Collection("assets");
