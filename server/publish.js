@@ -7,6 +7,13 @@ Meteor.publish('schemas', function () {
 
 Meteor.publish('useSchema', function(name) {
     setSchema(name)
-    return Schemas.find({name: name});
+    return Schemas.find({schemaName: name});
 });
 
+Meteor.publish('assetdata', function(){
+	return AssetData.find({})
+});
+
+Meteor.publish('thisasset', function(id){
+	return AssetData.find({_id: id})
+});

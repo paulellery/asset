@@ -3,6 +3,7 @@
 
 Meteor.startup( function(){
 	if (Schemas.find().count() === 0 ){
+
 		Schemas.insert({
 			schemaName: "Cars",
 			fields: [
@@ -59,3 +60,5 @@ Meteor.startup( function(){
 
 	}
 })
+
+

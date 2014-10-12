@@ -60,3 +60,4 @@ Schemas.attachSchema(Schema.schema);
 
 
 AssetData = new Mongo.Collection("assets");
+setSchema();

@@ -1,12 +1,13 @@
 <template name="record">
-	<h1>Record</h1>
+	
+	<div class="container">
+		<h1>Record</h1>
 
-	 {{> schemaPicker}}
+		{{> form}}
+
+	</div>
 
 
-	{{#if chosenSchema}}
-	   		{{> form}}
-	{{/if}}
 </template>
 
 
@@ -26,5 +27,54 @@
 </template>
 
 <template name="form">
-	{{> quickForm collection="AssetData" id="insertBookForm" type="insert"}}
+
+	<!-- Base data header -->
+	{{#autoForm collection="AssetData" id="insertAssetForm" type="insert"}}
+
+		<div class="row">
+			<div class="pull-right">
+		    	<button type="submit" class="btn btn-primary">Submit</button>
+		      	<button type="reset" class="btn btn-default">Reset</button>
+		    </div>
+	    </div>
+
+	    <div class="row">
+			{{> afQuickField name="assetId"}}
+			{{> afQuickField name="dateCreated"}}
+
+			{{> afQuickField name="assetType" options=typeOptions firstOption="Select an asset type"}}
+
+		</div>
+	{{/autoForm}}
+
+
+
+	{{#each schemas}}
+
+		{{#if equals schemaName chosenSchema}}
+			<div class="row">
+			<!-- Asset type section -->		
+				{{> quickForm 
+					schema=chosenAssetSchema 
+					id="assetAttributeForm" 
+					buttonContent=false
+				}}
+			</div>
+		{{/if}}
+
+	{{/each}}
+		
+</template>
+
+<template name="formx">
+	{{#autoForm collection="AssetData" id="insertAssetForm2" type="insert"}}
+	
+
+		{{#each chosenSchema.fields}}
+			x: {{name}} {{> afQuickField name=name}}
+		{{/each}}
+
+
+
+	{{/autoForm}}
 </template>

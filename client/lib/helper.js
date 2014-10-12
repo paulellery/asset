@@ -11,3 +11,10 @@ UI.registerHelper('activeIfTemplateIs', function (template) {
       return currentRoute &&
         template === currentRoute.lookupTemplate() ? 'active' : '';
 });
+
+UI.registerHelper('equals', function(a,b){
+	return a == b
+})
+
+
+AutoForm.debug()
