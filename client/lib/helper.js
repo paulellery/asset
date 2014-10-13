@@ -17,4 +17,4 @@ UI.registerHelper('equals', function(a,b){
 })
 
 
-AutoForm.debug()
+//AutoForm.debug()

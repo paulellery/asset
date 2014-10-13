@@ -40,6 +40,9 @@ Template.form.helpers({
             opts.push({label: sch.schemaName, value: sch.schemaName})
         });
         return opts;
+    },
+    baseSchema: function(){
+        return baseSchema;
     }
 });
 
@@ -47,8 +50,8 @@ Template.form.rendered = function(){
     AutoForm.resetForm("insertAssetForm")
     AutoForm.resetForm("assetAttributeForm")
     Session.set("chosenSchema", null);
-        Session.set("assetSchema", {});
-}
+    Session.set("assetSchema", {});
+} 
 
 Template.form.events({
   'click button': function () {
@@ -57,17 +60,3 @@ Template.form.events({
 });
 
 
-AutoForm.hooks({
-    insertAssetForm: {
-        before: {
-            insert: function(insertDoc, updateDoc, currentDoc){
-                
-                AutoForm.validateForm("insertAssetForm");
-                AutoForm.validateForm("assetAttributeForm");
-                console.log("onSubmit")
-                this.done;
-                return false;
-            }
-        }
-    }
-})

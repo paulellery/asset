@@ -7,5 +7,16 @@ Meteor.methods ({
 
 		Schemas.insert({name: name, fields: fields})
 		return true;
+	},
+
+
+	insertAsset: function(obj){
+		console.log("Add method:", obj)
+		
+		//	 TODO: VALIDATE THIS DATA
+
+		setSchema(obj.assetType);
+		AssetData.insert(obj);
+		return true;
 	}
 })

@@ -29,7 +29,7 @@
 <template name="form">
 
 	<!-- Base data header -->
-	{{#autoForm collection="AssetData" id="insertAssetForm" type="insert"}}
+	{{#autoForm schema=baseSchema id="insertAssetForm" type="method" meteormethod="insertAsset"}}
 
 		<div class="row">
 			<div class="pull-right">
