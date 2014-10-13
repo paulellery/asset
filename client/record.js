@@ -12,13 +12,13 @@ Template.form.events({
         var x = tpl.find("select").value;
 
         Session.set("chosenSchema", null);
-        Session.set("assetSchema", {});
+       // Session.set("assetSchema", {});
 
         if (x){
             //s = Meteor.subscribe("useSchema", x, function(){
               //setSchema(x);
               Session.set("chosenSchema", x);
-              Session.set("assetSchema", buildSchema(x));
+              //Session.set("assetSchema", buildSchema(x));
              //});
         }
 
@@ -32,7 +32,7 @@ Template.form.helpers({
         return Session.get("chosenSchema") 
     },
     chosenAssetSchema: function(){
-        return new SimpleSchema( Session.get("assetSchema") )
+        return getSchema(Session.get("chosenSchema") )
     },
     typeOptions: function(){
         var opts = [];

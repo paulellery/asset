@@ -10,13 +10,19 @@ Meteor.methods ({
 	},
 
 
-	insertAsset: function(obj){
-		console.log("Add method:", obj)
-		
-		//	 TODO: VALIDATE THIS DATA
+	insertAsset: function(doc){
+		console.log("Add method:", doc)
 
-		setSchema(obj.assetType);
-		AssetData.insert(obj);
+		// validate assetType
+		if (!Schemas.findOne({schemaName: doc.assetType})){
+			throw new Meteor.Error(500, "Unknown asset type")
+		}
+		
+		// Validate the doc against the appropriate schema
+		check(doc, getSchema(doc.assetType));
+
+		setSchema(doc.assetType);
+		AssetData.insert(doc);
 		return true;
 	}
 })
